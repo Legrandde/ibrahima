@@ -38,13 +38,13 @@ export default function Header() {
                     </div>
 
                     <a 
-                        href="tel:+224781938221"
+                        href="tel:+221781938221"
                         className={`hidden md:flex items-center justify-center gap-1.5 text-sm font-semibold transition-colors ${
                             theme === 'dark' ? 'text-gray-300 hover:text-emerald-400' : 'text-gray-700 hover:text-emerald-600'
                         }`}
                     >
                         <FaPhone className="text-emerald-500 text-xs" />
-                        +224 78 193 82 21
+                        +221 78 193 82 21
                     </a>
 
                     <a 

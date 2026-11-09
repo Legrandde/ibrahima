@@ -86,7 +86,7 @@ export default function Contact() {
                         <div className="flex flex-col gap-5 text-sm">
                             {/* Téléphone */}
                             <a 
-                                href="tel:+224781938221" 
+                                href="tel:+221781938221" 
                                 className={`flex items-center gap-4 group p-3 rounded-2xl transition-all ${
                                     theme === "dark" ? "hover:bg-gray-700/60 text-gray-200" : "hover:bg-emerald-50 text-gray-800"
                                 }`}
@@ -96,13 +96,13 @@ export default function Contact() {
                                 </div>
                                 <div>
                                     <p className="text-xs text-gray-400 font-medium">Téléphone / WhatsApp</p>
-                                    <p className="font-bold text-base">+224 78 193 82 21</p>
+                                    <p className="font-bold text-base">+221 78 193 82 21</p>
                                 </div>
                             </a>
 
                             {/* WhatsApp Direct */}
                             <a 
-                                href="https://wa.me/224781938221" 
+                                href="https://wa.me/221781938221" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-4 group p-3 rounded-2xl bg-green-500/10 hover:bg-green-500 text-green-700 dark:text-green-300 hover:text-white transition-all border border-green-500/20"

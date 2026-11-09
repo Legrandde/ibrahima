@@ -29,7 +29,7 @@ export default function Portfolio() {
     <div className={`min-h-screen transition-colors duration-300 ${theme === "dark" ? "bg-gray-900" : "bg-white"}`}>
       {/* Floating WhatsApp Button */}
       <button 
-        onClick={() => window.open("https://wa.me/224781938221", "_blank")} 
+        onClick={() => window.open("https://wa.me/221781938221", "_blank")} 
         className="bg-green-500 hover:bg-green-600 transition-transform hover:scale-110 fixed bottom-6 right-6 p-3.5 rounded-full cursor-pointer shadow-2xl text-white z-50 flex items-center justify-center" 
         aria-label="Contacter Ibrahima Diallo sur WhatsApp"
       >

@@ -88,77 +88,115 @@ export default function Ambitions() {
           </p>
         </motion.div>
 
-        {/* Hero showcase card of GN AGROBUSINESS */}
-        <div className={`p-8 md:p-12 rounded-3xl border mb-16 shadow-xl relative overflow-hidden ${
-          theme === 'dark' 
-            ? 'bg-gradient-to-br from-gray-800 to-gray-850 border-gray-700' 
-            : 'bg-gradient-to-br from-emerald-50/60 to-amber-50/40 border-emerald-100'
-        }`}>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7 flex flex-col gap-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase w-fit bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                <FaMapMarkerAlt />
-                Implantation : Somayah, Préfecture de Coyah, Guinée
-              </div>
-
-              <h3 className={`text-2xl sm:text-3xl font-extrabold leading-tight ${
-                theme === 'dark' ? 'text-white' : 'text-gray-900'
-              }`}>
-                Un projet d'envergure pour la production maraîchère guinéenne
-              </h3>
-
-              <p className={`text-base leading-relaxed ${
-                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-              }`}>
-                <strong>GN AGROBUSINESS</strong> est un projet entrepreneurial que je porte avec l'ambition de participer activement au développement de la production maraîchère en Guinée.
-              </p>
-
-              <p className={`text-base leading-relaxed ${
-                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-              }`}>
-                Le projet prévoit l'implantation d'une exploitation agricole à <strong>Somayah</strong>, dans la préfecture de <strong>Coyah</strong>, avec pour objectif de répondre à la demande croissante du marché en oignons et en pommes de terre.
-              </p>
-
-              {/* Vision card inside */}
-              <div className={`p-5 rounded-2xl border ${
-                theme === 'dark' ? 'bg-gray-700/60 border-gray-600 text-gray-200' : 'bg-white border-gray-200 text-gray-800 shadow-sm'
-              }`}>
-                <p className="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-1">
-                  Ma vision entrepreneuriale
-                </p>
-                <p className="text-sm sm:text-base font-semibold leading-relaxed">
-                  « Mettre en place une entreprise agricole moderne, rentable et durable, capable de produire des denrées alimentaires de qualité et de développer des circuits de commercialisation efficaces. »
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-3 pt-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/20 text-emerald-700 dark:text-emerald-300">
-                  <FaLeaf size={16} /> Oignons de qualité
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-500/20 text-amber-700 dark:text-amber-300">
-                  <GiPotato size={16} /> Pommes de terre
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-500/20 text-blue-700 dark:text-blue-300">
-                  <GiFarmTractor size={16} /> Agriculture moderne
-                </span>
-              </div>
-            </div>
-
-            {/* Photo on the right */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-emerald-500/30 group">
+        {/* 2 Projets Clés : Projet 1 & Projet 2 */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          {/* Projet 1: Exploitation Somayah */}
+          <div className={`p-8 rounded-3xl border shadow-lg flex flex-col justify-between ${
+            theme === 'dark' 
+              ? 'bg-gray-800/80 border-gray-700' 
+              : 'bg-white border-gray-200'
+          }`}>
+            <div>
+              <div className="relative rounded-2xl overflow-hidden mb-6 h-64 sm:h-72 border border-emerald-500/20 group">
                 <img 
-                  src="/gn_agrobusiness.jpg" 
-                  alt="Récolte d'oignons et de pommes de terre - GN AGROBUSINESS"
-                  className="w-full h-80 sm:h-96 object-cover transform group-hover:scale-105 transition-transform duration-500" 
+                  src="/gn_agrobusiness_1.jpg" 
+                  alt="Projet 1 : Production d'oignons et pommes de terre"
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-5 text-white">
-                  <p className="font-bold text-sm">GN AGROBUSINESS</p>
-                  <p className="text-xs text-emerald-300">Production maraîchère • Somayah, Coyah</p>
+                  <span className="text-xs font-bold uppercase text-emerald-300">Projet 01</span>
+                  <p className="font-bold text-lg">Exploitation Agricole de Somayah</p>
+                  <p className="text-xs text-gray-200">Préfecture de Coyah, Guinée</p>
                 </div>
               </div>
+
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase w-fit bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 mb-3">
+                <FaMapMarkerAlt /> Production Maraîchère
+              </div>
+
+              <h3 className={`text-xl font-bold mb-3 ${
+                theme === 'dark' ? 'text-white' : 'text-gray-900'
+              }`}>
+                Culture de l'oignon et de la pomme de terre
+              </h3>
+
+              <p className={`text-sm leading-relaxed mb-4 ${
+                theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+              }`}>
+                Le projet prévoit l'implantation d'une exploitation agricole moderne à <strong>Somayah</strong>, dans la préfecture de <strong>Coyah</strong>, pour répondre à la forte demande locale avec des semences adaptées et une production de haute qualité.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">
+                <FaLeaf size={14} /> Oignons
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-amber-500/15 text-amber-700 dark:text-amber-300">
+                <GiPotato size={14} /> Pommes de terre
+              </span>
             </div>
           </div>
+
+          {/* Projet 2: Récolte, Conditionnement & Commercialisation (avec la nouvelle photo !) */}
+          <div className={`p-8 rounded-3xl border shadow-lg flex flex-col justify-between ${
+            theme === 'dark' 
+              ? 'bg-gray-800/80 border-gray-700' 
+              : 'bg-white border-gray-200'
+          }`}>
+            <div>
+              <div className="relative rounded-2xl overflow-hidden mb-6 h-64 sm:h-72 border border-emerald-500/20 group">
+                <img 
+                  src="/gn_agrobusiness_2.jpg" 
+                  alt="Projet 2 : Récolte, conditionnement et commercialisation"
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-5 text-white">
+                  <span className="text-xs font-bold uppercase text-emerald-300">Projet 02</span>
+                  <p className="font-bold text-lg">Récolte, Conditionnement & Vente</p>
+                  <p className="text-xs text-gray-200">Circuits de distribution directs</p>
+                </div>
+              </div>
+
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase w-fit bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 mb-3">
+                <FaStore /> Circuits de Distribution
+              </div>
+
+              <h3 className={`text-xl font-bold mb-3 ${
+                theme === 'dark' ? 'text-white' : 'text-gray-900'
+              }`}>
+                Stockage, conservation et acheminement vers les marchés
+              </h3>
+
+              <p className={`text-sm leading-relaxed mb-4 ${
+                theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+              }`}>
+                Organisation des récoltes en filets conditionnés, maîtrise de la conservation post-récolte et développement de circuits courts vers Conakry et les grands pôles de consommation guinéens.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-blue-500/15 text-blue-700 dark:text-blue-300">
+                <FaBoxes size={14} /> Sacs en filets
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-emerald-500/15 text-emerald-700 dark:text-emerald-300">
+                <GiFarmTractor size={14} /> Logistique terrain
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Vision entrepreneuriale */}
+        <div className={`p-8 rounded-3xl border mb-16 ${
+          theme === 'dark' 
+            ? 'bg-gray-800/60 border-gray-700 text-gray-200' 
+            : 'bg-emerald-50/70 border-emerald-100 text-gray-800'
+        }`}>
+          <p className="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2">
+            Ma vision entrepreneuriale
+          </p>
+          <p className="text-lg md:text-xl font-semibold italic leading-relaxed">
+            « Mettre en place une entreprise agricole moderne, rentable et durable, capable de produire des denrées alimentaires de qualité et de développer des circuits de commercialisation efficaces. »
+          </p>
         </div>
 
         {/* 4 axes de développement */}
@@ -229,8 +267,8 @@ export default function Ambitions() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className={`p-8 md:p-10 rounded-3xl border-2 border-emerald-500/30 ${
-            theme === 'dark' ? 'bg-gray-850' : 'bg-emerald-50/40'
+          className={`p-8 md:p-10 rounded-3xl border ${
+            theme === 'dark' ? 'bg-gray-800/90 border-gray-700' : 'bg-white border-gray-200 shadow-md'
           }`}
         >
           <div className="flex flex-col md:flex-row gap-6 items-start">
@@ -255,7 +293,7 @@ export default function Ambitions() {
               </p>
 
               <div className={`p-4 rounded-xl border ${
-                theme === 'dark' ? 'bg-gray-800/80 border-gray-700 text-gray-200' : 'bg-white border-emerald-100 text-gray-800'
+                theme === 'dark' ? 'bg-gray-800/80 border-gray-700 text-gray-200' : 'bg-gray-50 border-gray-200 text-gray-800'
               }`}>
                 <p className="font-semibold italic text-sm md:text-base">
                   « Mon ambition dépasse la simple création d'une ferme : je souhaite contribuer à la construction d'un véritable modèle entrepreneurial agricole en Guinée. »
