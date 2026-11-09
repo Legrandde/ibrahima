@@ -1,285 +1,246 @@
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaSeedling, FaPaperPlane } from "react-icons/fa";
+import { useState } from "react";
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaArrowRight, FaPaperPlane } from "react-icons/fa";
 import { BsWhatsapp } from "react-icons/bs";
 import { useTheme } from "../contexts/ThemeContext";
-import { useState } from "react";
 
 export default function Contact() {
     const { theme } = useTheme();
 
-    const [formData, setFormData] = useState({
+    const [form, setForm] = useState({
         name: "",
         email: "",
         subject: "",
-        message: "",
+        message: ""
     });
 
-    const [status, setStatus] = useState<"idle" | "success" | "empty">("idle");
+    const [submitted, setSubmitted] = useState(false);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    };
-
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (!formData.name || !formData.email || !formData.message) {
-            setStatus("empty");
-            return;
-        }
+        if (!form.name || !form.email || !form.message) return;
 
-        const mailtoUrl = `mailto:ibrahimdiallo224123@gmail.com?subject=${encodeURIComponent(
-            formData.subject || "Prise de contact via portfolio"
+        const mailto = `mailto:ibrahimdiallo224123@gmail.com?subject=${encodeURIComponent(
+            form.subject || "Contact depuis portfolio"
         )}&body=${encodeURIComponent(
-            `Nom: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+            `Nom: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`
         )}`;
 
-        window.location.href = mailtoUrl;
-        setStatus("success");
+        window.location.href = mailto;
+        setSubmitted(true);
     };
 
     return (
-        <section
-            className={`py-20 px-4 md:px-8 max-w-7xl mx-auto ${
-                theme === "dark" ? "bg-gray-900" : "bg-white"
-            }`}
-            id="contact"
-        >
-            <div className="text-center mb-16">
-                <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider flex items-center justify-center gap-2">
-                    <FaSeedling />
-                    6. Contact
-                </span>
-                <h2
-                    className={`text-3xl md:text-5xl font-extrabold mt-2 mb-4 ${
-                        theme === "dark" ? "text-white" : "text-gray-900"
-                    }`}
-                >
-                    Prenez Contact
-                </h2>
-                <p
-                    className={`text-base md:text-lg max-w-3xl mx-auto leading-relaxed ${
-                        theme === "dark" ? "text-gray-300" : "text-gray-600"
-                    }`}
-                >
-                    « Ouvert aux opportunités professionnelles, aux collaborations, aux partenariats et aux échanges autour du développement agricole et entrepreneurial. »
-                </p>
-            </div>
+        <section id="contact" className="py-16 px-4 max-w-7xl mx-auto">
+            {/* Contact Card with rounded */}
+            <div className={`p-8 sm:p-12 md:p-16 rounded border shadow-xl ${
+                theme === 'dark' 
+                    ? 'bg-gray-900 border-gray-800 text-white' 
+                    : 'bg-white border-gray-200 text-gray-900'
+            }`}>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    {/* Left Info Column */}
+                    <div className="lg:col-span-5 flex flex-col justify-between">
+                        <div>
+                            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-4">
+                                6. Contact
+                            </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                {/* Contact info cards */}
-                <div className="lg:col-span-5 flex flex-col gap-6">
-                    <div className={`p-8 rounded-3xl border shadow-lg ${
-                        theme === "dark"
-                            ? "bg-gray-800 border-gray-700"
-                            : "bg-white border-gray-200"
-                    }`}>
-                        <div className="mb-6">
-                            <h3 className={`text-2xl font-extrabold ${
-                                theme === "dark" ? "text-white" : "text-gray-900"
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-4">
+                                Échangeons sur vos projets.
+                            </h2>
+
+                            <p className={`text-xs sm:text-sm leading-relaxed mb-8 ${
+                                theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
                             }`}>
-                                IBRAHIMA DIALLO
-                            </h3>
-                            <p className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mt-1">
-                                Entrepreneur agricole et promoteur de GN AGROBUSINESS
+                                « Ouvert aux opportunités professionnelles, aux collaborations, aux partenariats et aux échanges autour du développement agricole et entrepreneurial. »
                             </p>
                         </div>
 
-                        <div className="flex flex-col gap-5 text-sm">
-                            {/* Téléphone */}
-                            <a 
-                                href="tel:+224781938221" 
-                                className={`flex items-center gap-4 group p-3 rounded-2xl transition-all ${
-                                    theme === "dark" ? "hover:bg-gray-700/60 text-gray-200" : "hover:bg-emerald-50 text-gray-800"
+                        {/* Contact Chips */}
+                        <div className="space-y-4">
+                            {/* Phone (+221) */}
+                            <a
+                                href="tel:+221781938221"
+                                className={`flex items-center gap-4 p-4 rounded border transition-all ${
+                                    theme === 'dark' 
+                                        ? 'bg-gray-800/60 border-gray-700/80 hover:bg-gray-800 text-white' 
+                                        : 'bg-gray-50 border-gray-200 hover:bg-emerald-50/50 text-gray-900'
                                 }`}
                             >
-                                <div className="p-3.5 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
-                                    <FaPhone size={18} />
+                                <div className="w-10 h-10 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
+                                    <FaPhone size={16} />
                                 </div>
-                                <div>
-                                    <p className="text-xs text-gray-400 font-medium">Téléphone / WhatsApp</p>
-                                    <p className="font-bold text-base">+224 78 193 82 21</p>
+                                <div className="flex-1">
+                                    <span className="text-[10px] uppercase font-bold text-gray-400 block">Téléphone direct</span>
+                                    <span className="font-extrabold text-sm sm:text-base">+221 78 193 82 21</span>
+                                </div>
+                                <div className="w-8 h-8 rounded bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-xs">
+                                    <FaArrowRight size={9} />
                                 </div>
                             </a>
 
-                            {/* WhatsApp Direct */}
-                            <a 
-                                href="https://wa.me/224781938221" 
-                                target="_blank" 
+                            {/* WhatsApp Direct (+221) */}
+                            <a
+                                href="https://wa.me/221781938221"
+                                target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-4 group p-3 rounded-2xl bg-green-500/10 hover:bg-green-500 text-green-700 dark:text-green-300 hover:text-white transition-all border border-green-500/20"
+                                className={`flex items-center gap-4 p-4 rounded border transition-all ${
+                                    theme === 'dark' 
+                                        ? 'bg-gray-800/60 border-gray-700/80 hover:bg-gray-800 text-white' 
+                                        : 'bg-gray-50 border-gray-200 hover:bg-emerald-50/40 text-gray-900'
+                                }`}
                             >
-                                <div className="p-3.5 rounded-2xl bg-green-500 text-white">
+                                <div className="w-10 h-10 rounded bg-green-500/10 text-green-600 dark:text-green-400 flex items-center justify-center flex-shrink-0">
                                     <BsWhatsapp size={18} />
                                 </div>
-                                <div>
-                                    <p className="text-xs font-semibold">Discuter directement</p>
-                                    <p className="font-bold text-base">Sur WhatsApp</p>
+                                <div className="flex-1">
+                                    <span className="text-[10px] uppercase font-bold text-gray-400 block">Messagerie instantanée</span>
+                                    <span className="font-extrabold text-sm sm:text-base">Discuter sur WhatsApp</span>
+                                </div>
+                                <div className="w-8 h-8 rounded bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-xs">
+                                    <FaArrowRight size={9} />
                                 </div>
                             </a>
 
-                            {/* E-mail */}
-                            <a 
-                                href="mailto:ibrahimdiallo224123@gmail.com" 
-                                className={`flex items-center gap-4 group p-3 rounded-2xl transition-all ${
-                                    theme === "dark" ? "hover:bg-gray-700/60 text-gray-200" : "hover:bg-emerald-50 text-gray-800"
+                            {/* Email */}
+                            <a
+                                href="mailto:ibrahimdiallo224123@gmail.com"
+                                className={`flex items-center gap-4 p-4 rounded border transition-all ${
+                                    theme === 'dark' 
+                                        ? 'bg-gray-800/60 border-gray-700/80 hover:bg-gray-800 text-white' 
+                                        : 'bg-gray-50 border-gray-200 hover:bg-emerald-50/50 text-gray-900'
                                 }`}
                             >
-                                <div className="p-3.5 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
-                                    <FaEnvelope size={18} />
+                                <div className="w-10 h-10 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
+                                    <FaEnvelope size={16} />
                                 </div>
-                                <div className="overflow-hidden">
-                                    <p className="text-xs text-gray-400 font-medium">E-mail officiel</p>
-                                    <p className="font-bold text-sm sm:text-base break-all">ibrahimdiallo224123@gmail.com</p>
+                                <div className="flex-1 overflow-hidden">
+                                    <span className="text-[10px] uppercase font-bold text-gray-400 block">E-mail</span>
+                                    <span className="font-extrabold text-xs sm:text-sm truncate block">ibrahimdiallo224123@gmail.com</span>
+                                </div>
+                                <div className="w-8 h-8 rounded bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-xs">
+                                    <FaArrowRight size={9} />
                                 </div>
                             </a>
 
-                            {/* Localisation */}
-                            <div className={`flex items-center gap-4 p-3 rounded-2xl ${
-                                theme === "dark" ? "text-gray-200" : "text-gray-800"
+                            {/* Locations */}
+                            <div className={`p-4 rounded border flex items-start gap-4 ${
+                                theme === 'dark' ? 'bg-gray-800/40 border-gray-700/60' : 'bg-gray-50/70 border-gray-200'
                             }`}>
-                                <div className="p-3.5 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
-                                    <FaMapMarkerAlt size={18} />
+                                <div className="w-10 h-10 rounded bg-amber-500/10 text-amber-500 flex items-center justify-center flex-shrink-0">
+                                    <FaMapMarkerAlt size={16} />
                                 </div>
-                                <div>
-                                    <p className="text-xs text-gray-400 font-medium">Localisation actuelle</p>
-                                    <p className="font-bold text-sm sm:text-base">Keur Massar, Dakar, Sénégal</p>
-                                </div>
-                            </div>
-
-                            {/* Projet agricole */}
-                            <div className={`flex items-center gap-4 p-3 rounded-2xl ${
-                                theme === "dark" ? "text-gray-200" : "text-gray-800"
-                            }`}>
-                                <div className="p-3.5 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400">
-                                    <FaSeedling size={18} />
-                                </div>
-                                <div>
-                                    <p className="text-xs text-gray-400 font-medium">Projet agricole (Exploitation)</p>
-                                    <p className="font-bold text-sm sm:text-base text-emerald-600 dark:text-emerald-400">
-                                        Somayah, Coyah, Guinée
+                                <div className="text-xs">
+                                    <p className="font-bold">Keur Massar, Dakar, Sénégal</p>
+                                    <p className="text-emerald-600 dark:text-emerald-400 font-semibold mt-0.5">
+                                        Exploitation : Somayah, Coyah, Guinée
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                {/* Formulaire de message */}
-                <div className="lg:col-span-7">
-                    <form
-                        onSubmit={handleSubmit}
-                        className={`p-8 rounded-3xl border shadow-lg flex flex-col gap-4 ${
-                            theme === "dark"
-                                ? "bg-gray-800 border-gray-700"
-                                : "bg-white border-gray-200"
-                        }`}
-                    >
-                        <h3 className={`text-xl font-bold mb-2 ${
-                            theme === "dark" ? "text-white" : "text-gray-900"
-                        }`}>
-                            Envoyer un message
-                        </h3>
+                    {/* Right Form Column */}
+                    <div className="lg:col-span-7">
+                        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${
+                                        theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                                    }`}>
+                                        Votre nom complet *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        required
+                                        value={form.name}
+                                        onChange={(e) => setForm({ ...form, name: e.target.value })}
+                                        placeholder="Ex: Ibrahima Diallo"
+                                        className={`w-full p-4 rounded text-xs sm:text-sm font-medium outline-none transition-all ${
+                                            theme === 'dark'
+                                                ? 'bg-gray-800 text-white placeholder-gray-500 border border-gray-700 focus:border-emerald-500'
+                                                : 'bg-gray-50 text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-emerald-500'
+                                        }`}
+                                    />
+                                </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${
+                                        theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                                    }`}>
+                                        Votre adresse e-mail *
+                                    </label>
+                                    <input
+                                        type="email"
+                                        required
+                                        value={form.email}
+                                        onChange={(e) => setForm({ ...form, email: e.target.value })}
+                                        placeholder="Ex: contact@exemple.com"
+                                        className={`w-full p-4 rounded text-xs sm:text-sm font-medium outline-none transition-all ${
+                                            theme === 'dark'
+                                                ? 'bg-gray-800 text-white placeholder-gray-500 border border-gray-700 focus:border-emerald-500'
+                                                : 'bg-gray-50 text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-emerald-500'
+                                        }`}
+                                    />
+                                </div>
+                            </div>
+
                             <div>
-                                <label className={`block text-xs font-semibold uppercase mb-1.5 ${
-                                    theme === "dark" ? "text-gray-300" : "text-gray-700"
+                                <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${
+                                    theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                                 }`}>
-                                    Votre nom complet *
+                                    Objet / Sujet de contact
                                 </label>
                                 <input
                                     type="text"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    placeholder="Ex: Amadou Diallo"
-                                    className={`w-full p-3 rounded-xl outline-none transition-all ${
-                                        theme === "dark"
-                                            ? "bg-gray-700 text-white placeholder-gray-400 border border-gray-600 focus:border-emerald-500"
-                                            : "bg-gray-50 text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-emerald-500"
+                                    value={form.subject}
+                                    onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                                    placeholder="Ex: Partenariat agricole / Commande GN AGROBUSINESS"
+                                    className={`w-full p-4 rounded text-xs sm:text-sm font-medium outline-none transition-all ${
+                                        theme === 'dark'
+                                            ? 'bg-gray-800 text-white placeholder-gray-500 border border-gray-700 focus:border-emerald-500'
+                                            : 'bg-gray-50 text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-emerald-500'
                                     }`}
                                 />
                             </div>
 
                             <div>
-                                <label className={`block text-xs font-semibold uppercase mb-1.5 ${
-                                    theme === "dark" ? "text-gray-300" : "text-gray-700"
+                                <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${
+                                    theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                                 }`}>
-                                    Votre e-mail *
+                                    Votre message *
                                 </label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    placeholder="Ex: contact@exemple.com"
-                                    className={`w-full p-3 rounded-xl outline-none transition-all ${
-                                        theme === "dark"
-                                            ? "bg-gray-700 text-white placeholder-gray-400 border border-gray-600 focus:border-emerald-500"
-                                            : "bg-gray-50 text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-emerald-500"
+                                <textarea
+                                    required
+                                    rows={5}
+                                    value={form.message}
+                                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                                    placeholder="Bonjour Ibrahima, je vous contacte à propos de..."
+                                    className={`w-full p-4 rounded text-xs sm:text-sm font-medium outline-none resize-none transition-all ${
+                                        theme === 'dark'
+                                            ? 'bg-gray-800 text-white placeholder-gray-500 border border-gray-700 focus:border-emerald-500'
+                                            : 'bg-gray-50 text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-emerald-500'
                                     }`}
                                 />
                             </div>
-                        </div>
 
-                        <div>
-                            <label className={`block text-xs font-semibold uppercase mb-1.5 ${
-                                theme === "dark" ? "text-gray-300" : "text-gray-700"
-                            }`}>
-                                Objet / Sujet
-                            </label>
-                            <input
-                                type="text"
-                                name="subject"
-                                value={formData.subject}
-                                onChange={handleChange}
-                                placeholder="Ex: Partenariat agricole / Opportunité"
-                                className={`w-full p-3 rounded-xl outline-none transition-all ${
-                                    theme === "dark"
-                                        ? "bg-gray-700 text-white placeholder-gray-400 border border-gray-600 focus:border-emerald-500"
-                                        : "bg-gray-50 text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-emerald-500"
-                                }`}
-                            />
-                        </div>
+                            {submitted && (
+                                <p className="text-emerald-500 text-xs font-semibold">
+                                    Ouverture de votre client e-mail en cours...
+                                </p>
+                            )}
 
-                        <div>
-                            <label className={`block text-xs font-semibold uppercase mb-1.5 ${
-                                theme === "dark" ? "text-gray-300" : "text-gray-700"
-                            }`}>
-                                Votre message *
-                            </label>
-                            <textarea
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
-                                rows={5}
-                                placeholder="Bonjour Ibrahima, je vous contacte concernant votre projet agricole GN AGROBUSINESS..."
-                                className={`w-full p-3 rounded-xl outline-none resize-none transition-all ${
-                                    theme === "dark"
-                                        ? "bg-gray-700 text-white placeholder-gray-400 border border-gray-600 focus:border-emerald-500"
-                                        : "bg-gray-50 text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-emerald-500"
-                                }`}
-                            />
-                        </div>
-
-                        {status === "empty" && (
-                            <p className="text-red-400 text-xs font-semibold">
-                                Veuillez remplir au moins votre nom, email et votre message.
-                            </p>
-                        )}
-                        {status === "success" && (
-                            <p className="text-emerald-500 text-xs font-semibold">
-                                Redirection vers votre messagerie en cours... Merci pour votre message !
-                            </p>
-                        )}
-
-                        <button
-                            type="submit"
-                            className="w-full py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 cursor-pointer"
-                        >
-                            <FaPaperPlane />
-                            Envoyer le message
-                        </button>
-                    </form>
+                            <button
+                                type="submit"
+                                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded bg-gray-950 text-white dark:bg-white dark:text-gray-950 hover:bg-emerald-600 dark:hover:bg-emerald-500 dark:hover:text-white font-bold text-xs sm:text-sm transition-all shadow-lg cursor-pointer mt-2"
+                            >
+                                <span>Envoyer le message</span>
+                                <div className="w-6 h-6 rounded bg-emerald-500 text-white flex items-center justify-center text-[10px]">
+                                    <FaPaperPlane size={9} />
+                                </div>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>

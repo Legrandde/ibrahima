@@ -1,133 +1,158 @@
-import { FaPhone, FaSeedling, FaGraduationCap, FaTractor, FaBullseye } from "react-icons/fa";
+import { FaArrowRight, FaBullseye } from "react-icons/fa";
+import { FaSeedling } from "react-icons/fa6";
 import { useTheme } from "../contexts/ThemeContext";
 
 export default function About() {
     const { theme } = useTheme();
 
     return (
-        <section 
-            className={`py-20 px-4 md:px-8 max-w-7xl mx-auto ${
-                theme === 'dark' ? 'bg-gray-900' : 'bg-white'
-            }`} 
-            id="about"
-        >
-            <div className="flex flex-col lg:flex-row gap-12 items-center">
-                {/* Visual card */}
-                <div className="w-full lg:w-5/12 flex flex-col gap-4">
-                    <div className="relative rounded-3xl overflow-hidden shadow-xl border-4 border-emerald-500/20 group">
-                        <img 
-                            src="/gn_agrobusiness.jpg" 
-                            alt="Projet GN AGROBUSINESS - Oignons et pommes de terre" 
-                            className="w-full h-80 sm:h-96 object-cover transform group-hover:scale-105 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-gray-950/20 to-transparent flex flex-col justify-end p-6 text-white">
-                            <span className="px-3 py-1 rounded-full bg-emerald-500 text-white text-xs font-bold uppercase w-fit mb-2">
-                                Exploitation Somayah (Coyah)
-                            </span>
-                            <h4 className="text-xl font-bold">GN AGROBUSINESS</h4>
-                            <p className="text-sm text-gray-200">Production & commercialisation maraîchère de qualité</p>
-                        </div>
+        <section id="about" className="py-12 px-4 max-w-7xl mx-auto">
+            {/* Bento Grid Header */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 gap-4">
+                <div>
+                    <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-2">
+                        <FaSeedling size={11} />
+                        1. Accueil – Qui suis-je ?
                     </div>
-
-                    {/* Mini stats cards */}
-                    <div className="grid grid-cols-2 gap-3">
-                        <div className={`p-4 rounded-2xl border ${
-                            theme === 'dark' ? 'bg-gray-800/60 border-gray-700' : 'bg-emerald-50/60 border-emerald-100'
-                        }`}>
-                            <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 mb-1">
-                                <FaGraduationCap size={18} />
-                                <span className="text-xs font-bold uppercase">Formation</span>
-                            </div>
-                            <p className="font-bold text-sm">Licence PME</p>
-                            <p className={`text-xs ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>UNIPRO (2026)</p>
-                        </div>
-
-                        <div className={`p-4 rounded-2xl border ${
-                            theme === 'dark' ? 'bg-gray-800/60 border-gray-700' : 'bg-emerald-50/60 border-emerald-100'
-                        }`}>
-                            <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 mb-1">
-                                <FaTractor size={18} />
-                                <span className="text-xs font-bold uppercase">Filières</span>
-                            </div>
-                            <p className="font-bold text-sm">Oignon & Pomme</p>
-                            <p className={`text-xs ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>de terre en Guinée</p>
-                        </div>
-                    </div>
+                    <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black tracking-tight ${
+                        theme === 'dark' ? 'text-white' : 'text-gray-950'
+                    }`}>
+                        Une vocation : l'entrepreneuriat agricole
+                    </h2>
                 </div>
+                <p className={`text-xs sm:text-sm max-w-md ${
+                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                }`}>
+                    Un parcours alliant formation universitaire rigoureuse en gestion et ambition forte de bâtir une agriculture moderne.
+                </p>
+            </div>
 
-                {/* Text Content */}
-                <div className="w-full lg:w-7/12 flex flex-col gap-5">
+            {/* Asymmetric 3-Column Bento Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                {/* Card 1: Text Presentation Card */}
+                <div className={`lg:col-span-4 p-8 rounded border flex flex-col justify-between shadow-sm transition-all hover:shadow-md ${
+                    theme === 'dark' 
+                        ? 'bg-gray-900 border-gray-800 text-white' 
+                        : 'bg-[#f8faf8] border-gray-200 text-gray-900'
+                }`}>
                     <div>
-                        <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider flex items-center gap-2">
-                            <FaSeedling />
-                            1. Accueil – Qui suis-je ?
-                        </span>
-                        <h2 className={`text-3xl md:text-4xl font-extrabold mt-1 mb-2 ${
-                            theme === 'dark' ? 'text-white' : 'text-gray-900'
-                        }`}>
-                            Ibrahima Diallo
-                        </h2>
-                        <h3 className="text-lg font-semibold text-emerald-600 dark:text-emerald-400">
-                            Entrepreneur agricole & promoteur de GN AGROBUSINESS
-                        </h3>
-                    </div>
-
-                    <p className={`text-base leading-relaxed ${
-                        theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                    }`}>
-                        Je suis <strong>Ibrahima Diallo</strong>, titulaire d'une <strong>Licence en Entrepreneuriat et Gestion des PME</strong>, obtenue en 2026 à l'Université Professionnelle (UNIPRO).
-                    </p>
-
-                    <p className={`text-base leading-relaxed ${
-                        theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                    }`}>
-                        Passionné par l'entrepreneuriat et particulièrement intéressé par le développement du secteur agricole, je m'investis dans la conception et la structuration de projets entrepreneuriaux à fort potentiel économique et social.
-                    </p>
-
-                    <p className={`text-base leading-relaxed ${
-                        theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                    }`}>
-                        Mon ambition est de contribuer à la modernisation de l'agriculture guinéenne à travers la création d'entreprises agricoles performantes, durables et innovantes.
-                    </p>
-
-                    <p className={`text-base leading-relaxed ${
-                        theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                    }`}>
-                        Je suis le promoteur de <strong>GN AGROBUSINESS</strong>, un projet entrepreneurial spécialisé dans la culture et la commercialisation de l'oignon et de la pomme de terre.
-                    </p>
-
-                    {/* Vision card */}
-                    <div className={`p-5 rounded-2xl border ${
-                        theme === 'dark' ? 'bg-gray-800/80 border-gray-700/60 text-gray-200' : 'bg-emerald-50/70 border-emerald-100/80 text-gray-800 shadow-sm'
-                    }`}>
-                        <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold text-xs uppercase tracking-wider mb-1.5">
-                            <FaBullseye />
-                            Ma vision
+                        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded text-xs font-semibold bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 mb-6">
+                            <span>Profil & Parcours</span>
                         </div>
-                        <p className="italic font-medium text-base md:text-lg">
-                            « Faire de l'agriculture un véritable moteur de création de richesse, d'emplois et de développement économique en Guinée. »
+                        <h3 className="text-xl sm:text-2xl font-black tracking-tight leading-snug mb-4">
+                            Je suis Ibrahima Diallo, promoteur de GN AGROBUSINESS.
+                        </h3>
+                        <p className={`text-xs sm:text-sm leading-relaxed mb-4 ${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                        }`}>
+                            Titulaire d'une <strong>Licence en Entrepreneuriat et Gestion des PME</strong>, obtenue en 2026 à l'<strong>Université Professionnelle (UNIPRO)</strong>.
+                        </p>
+                        <p className={`text-xs sm:text-sm leading-relaxed mb-6 ${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                        }`}>
+                            Passionné par l'entrepreneuriat et le développement agricole, je m'investis dans la conception et la structuration de projets entrepreneuriaux à fort potentiel économique et social.
                         </p>
                     </div>
 
-                    <div className="flex flex-wrap gap-4 pt-2">
-                        <a 
-                            href="#contact"
-                            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold transition-all shadow-md shadow-emerald-600/20"
-                        >
-                            <FaPhone /> Me contacter
-                        </a>
-                        <a 
-                            href="#ambitions"
-                            className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold border transition-all ${
-                                theme === 'dark'
-                                    ? 'border-gray-700 bg-gray-800 text-gray-200 hover:bg-gray-700'
-                                    : 'border-gray-300 bg-white text-gray-800 hover:bg-gray-50'
-                            }`}
-                        >
-                            En savoir plus sur le projet
-                        </a>
+                    <a
+                        href="#formation"
+                        className="inline-flex items-center justify-between px-5 py-3 rounded bg-gray-950 text-white dark:bg-white dark:text-gray-950 text-xs font-bold hover:opacity-90 transition-opacity mt-2"
+                    >
+                        <span>Découvrir mon parcours</span>
+                        <div className="w-5 h-5 rounded bg-emerald-500 text-white flex items-center justify-center text-[10px]">
+                            <FaArrowRight size={8} />
+                        </div>
+                    </a>
+                </div>
+
+                {/* Card 2: Center Portrait Card */}
+                <div className="lg:col-span-4 relative rounded overflow-hidden min-h-[380px] lg:min-h-full border border-gray-200 dark:border-gray-800 shadow-md group">
+                    <img 
+                        src="/ibrahima_profile.jpg" 
+                        alt="Ibrahima Diallo portrait" 
+                        className="w-full h-full object-cover object-top absolute inset-0 transform group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-950/85 via-gray-950/20 to-transparent flex flex-col justify-end p-6 text-white">
+                        <div className="p-4 rounded backdrop-blur-md bg-white/15 border border-white/20 flex items-center justify-between">
+                            <div>
+                                <p className="font-extrabold text-sm sm:text-base">IBRAHIMA DIALLO</p>
+                                <p className="text-xs text-emerald-300 font-medium">Diplômé UNIPRO 2026 • Gestion PME</p>
+                            </div>
+                            <a
+                                href="#contact"
+                                className="w-9 h-9 rounded bg-white text-gray-950 flex items-center justify-center hover:bg-emerald-400 transition-colors"
+                                aria-label="Contacter"
+                            >
+                                <FaArrowRight size={10} />
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                {/* Card 3: Project Highlight Card */}
+                <div className="lg:col-span-4 relative rounded overflow-hidden min-h-[380px] lg:min-h-full border border-gray-200 dark:border-gray-800 shadow-md group">
+                    <img 
+                        src="/gn_agrobusiness.jpg" 
+                        alt="Récolte GN AGROBUSINESS" 
+                        className="w-full h-full object-cover absolute inset-0 transform group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-950/30 to-black/20 flex flex-col justify-between p-6 text-white">
+                        <div className="flex justify-between items-start">
+                            <span className="px-3 py-1 rounded text-[11px] font-bold uppercase backdrop-blur-md bg-white/20 border border-white/25">
+                                Somayah • Coyah
+                            </span>
+                            <span className="w-8 h-8 rounded bg-emerald-500 text-white flex items-center justify-center">
+                                <FaSeedling size={13} />
+                            </span>
+                        </div>
+
+                        <div>
+                            <span className="text-emerald-400 text-xs font-bold uppercase tracking-wider block mb-1">
+                                Projet Entrepreneurial
+                            </span>
+                            <h4 className="text-xl font-black mb-2">GN AGROBUSINESS</h4>
+                            <p className="text-xs text-white/80 leading-relaxed mb-4">
+                                Spécialisé dans la culture et la commercialisation de l'oignon et de la pomme de terre en Guinée.
+                            </p>
+                            <a 
+                                href="#ambitions"
+                                className="inline-flex items-center gap-2 px-4 py-2 rounded bg-white text-gray-950 text-xs font-bold hover:bg-emerald-50 transition-colors"
+                            >
+                                <span>Explorer le projet</span>
+                                <FaArrowRight size={9} />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Wide Vision Bar */}
+            <div className={`mt-6 p-7 sm:p-9 rounded border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 ${
+                theme === 'dark' 
+                    ? 'bg-gray-900 border-gray-800 text-white' 
+                    : 'bg-white border-gray-200 text-gray-900 shadow-sm'
+            }`}>
+                <div className="flex items-start sm:items-center gap-4">
+                    <div className="w-12 h-12 rounded bg-emerald-600 text-white flex items-center justify-center flex-shrink-0 shadow-md">
+                        <FaBullseye size={22} />
+                    </div>
+                    <div>
+                        <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 block mb-1">
+                            Ma Vision Phare
+                        </span>
+                        <p className="text-base sm:text-lg md:text-xl font-bold tracking-tight">
+                            « Faire de l'agriculture un véritable moteur de création de richesse, d'emplois et de développement économique en Guinée. »
+                        </p>
+                    </div>
+                </div>
+
+                <a
+                    href="#contact"
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded bg-gray-950 text-white dark:bg-white dark:text-gray-950 text-xs font-bold whitespace-nowrap hover:opacity-90 transition-opacity"
+                >
+                    <span>Échanger avec moi</span>
+                    <FaArrowRight size={10} />
+                </a>
             </div>
         </section>
     );
