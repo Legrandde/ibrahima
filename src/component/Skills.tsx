@@ -1,74 +1,62 @@
 import { motion, type Variants } from 'framer-motion';
 import { useTheme } from '../contexts/ThemeContext';
-import { FaCode, FaDatabase, FaMobile, FaCloud, FaTools } from 'react-icons/fa';
+import { 
+  FaBriefcase, 
+  FaLaptopCode, 
+  FaSeedling, 
+  FaCheckCircle 
+} from 'react-icons/fa';
 
-interface SkillCategory {
+interface SkillGroup {
   id: string;
-  name: string;
+  title: string;
   icon: React.ReactNode;
-  skills: {
-    name: string;
-    level: number; // 0-100
-  }[];
+  color: string;
+  badgeBg: string;
+  skills: { name: string; detail?: string }[];
 }
 
-const skillCategories: SkillCategory[] = [
+const skillGroups: SkillGroup[] = [
   {
-    id: '1',
-    name: 'Frontend',
-    icon: <FaCode size={24} />,
+    id: 'gestion',
+    title: 'Gestion et entrepreneuriat',
+    icon: <FaBriefcase size={26} />,
+    color: 'text-amber-500',
+    badgeBg: 'bg-amber-500/10 border-amber-500/20 text-amber-600 dark:text-amber-400',
     skills: [
-      { name: 'React', level: 95 },
-      { name: 'TypeScript', level: 90 },
-      { name: 'Tailwind CSS', level: 92 },
-      { name: 'HTML | CSS', level: 95 }
+      { name: 'Élaboration et rédaction de business plans' },
+      { name: 'Identification et conception d\'idées de projets' },
+      { name: 'Structuration de projets entrepreneuriaux' },
+      { name: 'Planification et organisation des activités' },
+      { name: 'Analyse de marché et réflexion stratégique' },
+      { name: 'Gestion et organisation des PME' },
     ]
   },
   {
-    id: '2',
-    name: 'Backend',
-    icon: <FaDatabase size={24} />,
+    id: 'numerique',
+    title: 'Compétences numériques',
+    icon: <FaLaptopCode size={26} />,
+    color: 'text-blue-500',
+    badgeBg: 'bg-blue-500/10 border-blue-500/20 text-blue-600 dark:text-blue-400',
     skills: [
-      { name: 'Express', level: 30 },
-      { name: 'NestJs', level: 85 },
-      { name: 'MySql', level: 82 },
-      { name: 'Django + DRF', level: 50},
-      { name: 'REST API', level: 93 }, 
-      { name: 'PhP', level: 70}
+      { name: 'Microsoft Word', detail: 'Rédaction professionnelle & rapports' },
+      { name: 'Microsoft Excel', detail: 'Tableaux de bord & modélisation financière' },
+      { name: 'Microsoft Project (MS Project)', detail: 'Niveau intermédiaire – Gestion des plannings' },
     ]
   },
   {
-    id: '3',
-    name: 'Mobile',
-    icon: <FaMobile size={24} />,
+    id: 'agricole',
+    title: 'Expertise agricole',
+    icon: <FaSeedling size={26} />,
+    color: 'text-emerald-500',
+    badgeBg: 'bg-emerald-500/10 border-emerald-500/20 text-emerald-600 dark:text-emerald-400',
     skills: [
-      { name: 'React Native', level: 87 },
-      { name: 'Flutter', level: 75 },
-    ]
-  },
-  {
-    id: '4',
-    name: 'Cloud & DevOps',
-    icon: <FaCloud size={24} />,
-    skills: [
-      
-      { name: 'Docker', level: 85 },
-
-      { name: 'Git et GitHub', level: 95 }
-    ]
-  },
-  {
-    id: '5',
-    name: 'Outils',
-    icon: <FaTools size={24} />,
-    skills: [
-      { name: 'Figma', level: 88 },
-      { name: 'VS Code', level: 95 },
-      { name: 'Postman', level: 90 },
-      { name: 'Trello', level: 80 },
-      { name: 'VmWare workstation', level:80},
-      { name: 'Photoshop', level:60},
-      { name: 'Illustrator', level:60}
+      { name: 'Culture de l\'oignon' },
+      { name: 'Culture de la pomme de terre' },
+      { name: 'Organisation de la production agricole' },
+      { name: 'Gestion des stocks et conservation post-récolte' },
+      { name: 'Commercialisation et distribution des produits agricoles' },
+      { name: 'Développement des circuits d\'approvisionnement' },
     ]
   }
 ];
@@ -81,12 +69,12 @@ export default function Skills() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.15
       }
     }
   };
 
-  const cardVariants:Variants = {
+  const cardVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -99,9 +87,12 @@ export default function Skills() {
   };
 
   return (
-    <section className={`py-16 px-4 md:px-8 ${
-      theme === 'dark' ? 'bg-gray-900' : 'bg-white'
-    }`} id="skills">
+    <section 
+      className={`py-20 px-4 md:px-8 ${
+        theme === 'dark' ? 'bg-gray-800/40' : 'bg-gray-50'
+      }`} 
+      id="competences"
+    >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -111,81 +102,92 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-sm font-semibold text-amber-500 uppercase tracking-wide">Compétences</span>
-          <h2 className={`text-4xl md:text-5xl font-bold mt-2 mb-4 ${
+          <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+            4. Mon expertise et mes compétences
+          </span>
+          <h2 className={`text-3xl md:text-5xl font-extrabold mt-2 mb-4 ${
             theme === 'dark' ? 'text-white' : 'text-gray-900'
           }`}>
-            Technologies maîtrisées
+            Compétences & Savoir-Faire
           </h2>
-          <p className={`text-lg max-w-2xl mx-auto ${
-            theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+          <p className={`text-base md:text-lg max-w-2xl mx-auto ${
+            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
           }`}>
-            Un éventail de compétences pour répondre à tous vos besoins
+            Une synergie entre gestion stratégique des PME, maîtrise des outils numériques et compétences agronomiques de terrain
           </p>
         </motion.div>
 
-        {/* Skills Grid */}
+        {/* Categories */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
         >
-          {skillCategories.map((category) => (
+          {skillGroups.map((group) => (
             <motion.div
-              key={category.id}
+              key={group.id}
               variants={cardVariants}
-              whileHover={{ y: -2 }}
-              className={`p-6 rounded transition-all duration-300 ${
-                theme === 'dark' 
-                  ? 'bg-gray-800/50 border border-gray-700/50 hover:border-amber-500/50' 
-                  : 'bg-gray-50 border border-gray-200 hover:border-amber-300'
+              whileHover={{ y: -6 }}
+              className={`p-7 rounded-3xl border transition-all shadow-md flex flex-col justify-between ${
+                theme === 'dark'
+                  ? 'bg-gray-800 border-gray-700/80 hover:border-emerald-500/50'
+                  : 'bg-white border-gray-200 hover:border-emerald-500/50'
               }`}
             >
-              {/* Category Header */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className={`p-3 rounded ${
-                  theme === 'dark' ? 'bg-amber-500/20' : 'bg-amber-100'
-                }`}>
-                  <div className="text-amber-500">
-                    {category.icon}
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className={`p-3.5 rounded-2xl ${
+                    theme === 'dark' ? 'bg-gray-700/70' : 'bg-gray-100'
+                  } ${group.color}`}>
+                    {group.icon}
+                  </div>
+                  <div>
+                    <h3 className={`text-lg font-bold ${
+                      theme === 'dark' ? 'text-white' : 'text-gray-900'
+                    }`}>
+                      {group.title}
+                    </h3>
+                    <span className="text-xs text-gray-400 font-medium">
+                      {group.skills.length} compétences clés
+                    </span>
                   </div>
                 </div>
-                <h3 className={`text-xl font-bold ${
-                  theme === 'dark' ? 'text-white' : 'text-gray-900'
-                }`}>
-                  {category.name}
-                </h3>
+
+                <ul className="space-y-3.5">
+                  {group.skills.map((skill, index) => (
+                    <li 
+                      key={index}
+                      className={`flex items-start gap-3 p-2.5 rounded-xl transition-colors ${
+                        theme === 'dark' ? 'hover:bg-gray-700/40' : 'hover:bg-gray-50'
+                      }`}
+                    >
+                      <FaCheckCircle className="text-emerald-500 flex-shrink-0 mt-1 text-sm" />
+                      <div>
+                        <p className={`text-sm font-semibold leading-tight ${
+                          theme === 'dark' ? 'text-gray-200' : 'text-gray-800'
+                        }`}>
+                          {skill.name}
+                        </p>
+                        {skill.detail && (
+                          <p className={`text-xs mt-0.5 ${
+                            theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
+                          }`}>
+                            {skill.detail}
+                          </p>
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              {/* Skills List */}
-              <div className="space-y-4">
-                {category.skills.map((skill, index) => (
-                  <div key={index}>
-                    <div className="flex justify-between mb-2">
-                      <span className={`text-sm font-medium ${
-                        theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                      }`}>
-                        {skill.name}
-                      </span>
-                      <span className={`text-sm font-semibold text-amber-500`}>
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <div className={`h-2 rounded-full overflow-hidden ${
-                      theme === 'dark' ? 'bg-gray-700' : 'bg-gray-200'
-                    }`}>
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: index * 0.1 }}
-                        className="h-full bg-gradient-to-r from-amber-400 to-amber-600 rounded-full"
-                      />
-                    </div>
-                  </div>
-                ))}
+              {/* Category Footer pill */}
+              <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700/60">
+                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ${group.badgeBg}`}>
+                  Expertise confirmée
+                </span>
               </div>
             </motion.div>
           ))}

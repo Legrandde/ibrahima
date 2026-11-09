@@ -1,165 +1,170 @@
-import { motion } from "framer-motion";
-import { GiProgression } from "react-icons/gi";
-import {
-  FaGraduationCap,
-  FaBookReader,
-  FaHeart,
-  FaLightbulb,
-  FaHandsHelping,
-  FaFemale,
-  FaAward,
-  FaSchool
-} from "react-icons/fa";
+import { motion, type Variants } from "framer-motion";
+import { FaGraduationCap, FaSeedling, FaMapMarkerAlt, FaChartLine, FaLeaf } from "react-icons/fa";
+import { GiPotato } from "react-icons/gi";
 import { useTheme } from "../contexts/ThemeContext";
-import type { Variants } from "framer-motion";
 
-export default function Banner(){
+export default function Banner() {
     const { theme } = useTheme();
 
-const containerVariants: Variants = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.1,
-    },
-  },
-};
+    const containerVariants: Variants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.1,
+            },
+        },
+    };
 
-const itemVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    x: -30,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-};
+    const itemVariants: Variants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.6, ease: "easeOut" },
+        },
+    };
 
-const imageVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    scale: 0.8,
-    x: 30,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    x: 0,
-    transition: {
-      duration: 0.8,
-      ease: "easeOut",
-    },
-  },
-};
+    const imageVariants: Variants = {
+        hidden: { opacity: 0, scale: 0.9 },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            transition: { duration: 0.7, ease: "easeOut" },
+        },
+    };
 
-const domainIcons = [
-  { Icon: FaGraduationCap, angle: 0,   color: '#f59e0b', label: 'Éducation' },
-  { Icon: FaHandsHelping,  angle: 90,  color: '#10b981', label: 'Inclusion' },
-  { Icon: FaLightbulb,     angle: 144, color: '#3b82f6', label: 'EdTech' },
-  { Icon: FaFemale,        angle: 216, color: '#ec4899', label: 'Droits des Femmes' },
-  { Icon: FaBookReader,    angle: 288, color: '#8b5cf6', label: 'Savoir' },
-  { Icon: FaSchool,        angle: 28,  color: '#f97316', label: 'STEM' },
-  { Icon: FaAward,         angle: 180, color: '#eab308', label: 'Fellowship' },
-  { Icon: FaHeart,         angle: 250, color: '#ef4444', label: 'Engagement' },
-];
+    const badges = [
+        { Icon: FaLeaf, angle: 10, color: '#f59e0b', label: 'Culture de l’Oignon' },
+        { Icon: GiPotato, angle: 80, color: '#eab308', label: 'Pomme de Terre' },
+        { Icon: FaSeedling, angle: 150, color: '#10b981', label: 'GN AGROBUSINESS' },
+        { Icon: FaGraduationCap, angle: 215, color: '#3b82f6', label: 'UNIPRO 2026' },
+        { Icon: FaChartLine, angle: 280, color: '#059669', label: 'Gestion des PME' },
+        { Icon: FaMapMarkerAlt, angle: 335, color: '#ef4444', label: 'Somayah, Coyah' },
+    ];
 
-    return(
-        <motion.div 
+    return (
+        <motion.section 
             id="accueil" 
-            className={`relative flex m-auto md:flex-row flex-col justify-center items-center min-h-[85vh] px-4 py-12 ${
+            className={`relative flex flex-col md:flex-row justify-center items-center min-h-[85vh] px-4 md:px-8 py-12 max-w-7xl mx-auto overflow-hidden ${
                 theme === 'dark' ? 'bg-gray-900' : 'bg-white'
             }`}
             variants={containerVariants}
             initial="hidden"
             animate="visible"
         >
-            {/* Grille en arrière-plan */}
+            {/* Background pattern */}
             <div
-                className="absolute inset-0 pointer-events-none z-0"
+                className="absolute inset-0 pointer-events-none opacity-40 z-0"
                 style={{
                     backgroundImage: theme === 'dark'
-                        ? 'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)'
-                        : 'linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px)',
-                    backgroundSize: '40px 40px',
+                        ? 'radial-gradient(rgba(16, 185, 129, 0.15) 1px, transparent 1px)'
+                        : 'radial-gradient(rgba(16, 185, 129, 0.2) 1px, transparent 1px)',
+                    backgroundSize: '32px 32px',
                 }}
             />
 
             <motion.div 
-                className="flex justify-center items-center md:items-start text-center md:text-left flex-col p-4 z-10 max-w-2xl"
+                className="flex justify-center items-center md:items-start text-center md:text-left flex-col p-4 z-10 max-w-2xl flex-1"
                 variants={containerVariants}
             >
-                <motion.a 
-                    href="#engagements"
+                <motion.div 
                     variants={itemVariants}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-colors mb-4 ${
-                        theme === 'dark' 
-                            ? 'bg-amber-500 hover:bg-amber-600 text-white' 
-                            : 'bg-amber-500 hover:bg-amber-600 text-white shadow-md'
-                    }`}
+                    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400"
                 >
-                    <GiProgression />
-                    Découvrir mes engagements
-                </motion.a>
+                    <FaSeedling className="text-emerald-500" />
+                    Agrobusiness & Entrepreneuriat
+                </motion.div>
 
-                <motion.span 
-                    variants={itemVariants}
-                    className={`text-xl font-medium mb-1 ${
-                        theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                    }`}
-                >
-                    Bienvenue sur le site officiel de
-                </motion.span>
                 <motion.h1 
                     variants={itemVariants}
-                    className={`md:text-5xl text-4xl font-black my-2 ${
+                    className={`text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-2 ${
                         theme === 'dark' ? 'text-white' : 'text-gray-900'
                     }`}
                 >
-                    Codou Aïcha <span className="text-amber-500">Faye</span>
+                    IBRAHIMA <span className="text-emerald-500">DIALLO</span>
                 </motion.h1>
+
                 <motion.h2 
                     variants={itemVariants}
-                    className={`text-lg md:text-xl font-semibold mb-4 ${
-                      theme === 'dark' ? 'text-amber-400' : 'text-amber-600'
-                    }`}
+                    className="text-lg sm:text-xl font-bold text-emerald-600 dark:text-emerald-400 mb-2"
                 >
-                    Directrice d'Écoles au Sénégal | EdTech, Éducation & Inclusion
+                    Entrepreneur agricole et promoteur de GN AGROBUSINESS
                 </motion.h2>
+
                 <motion.p 
                     variants={itemVariants}
-                    className={`text-base md:text-lg leading-relaxed ${
-                        theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                    className={`text-sm sm:text-base font-medium mb-6 ${
+                        theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                     }`}
                 >
-                    Une trajectoire au service de l’humain, de l’éducation et de l’inclusion. Une femme de convictions et d’engagement pour la cause des femmes, la protection de l'enfance et l'accès au savoir pour tous.
+                    Titulaire d'une Licence en Entrepreneuriat et Gestion des PME | Agrobusiness
                 </motion.p>
+
+                <motion.div 
+                    variants={itemVariants}
+                    className={`p-5 rounded-2xl mb-8 max-w-xl text-left border ${
+                        theme === 'dark' ? 'bg-gray-800/80 border-gray-700/60 text-gray-200' : 'bg-emerald-50/70 border-emerald-100/80 text-gray-800 shadow-sm'
+                    }`}
+                >
+                    <p className="text-xs uppercase font-bold tracking-wider text-emerald-600 dark:text-emerald-400 mb-1">
+                        Vision
+                    </p>
+                    <p className="italic text-sm sm:text-base leading-relaxed">
+                        « Faire de l'agriculture un véritable moteur de création de richesse, d'emplois et de développement économique en Guinée. »
+                    </p>
+                </motion.div>
+
+                <motion.div 
+                    variants={itemVariants}
+                    className="flex flex-wrap gap-4 justify-center md:justify-start"
+                >
+                    <a
+                        href="#ambitions"
+                        className="px-6 py-3 rounded-xl font-semibold bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/30 transition-all flex items-center gap-2"
+                    >
+                        <FaSeedling />
+                        Découvrir GN AGROBUSINESS
+                    </a>
+                    <a
+                        href="#contact"
+                        className={`px-6 py-3 rounded-xl font-semibold border transition-all ${
+                            theme === 'dark'
+                                ? 'border-gray-700 bg-gray-800/80 text-gray-200 hover:bg-gray-700'
+                                : 'border-gray-300 bg-white text-gray-800 hover:bg-gray-50 shadow-sm'
+                        }`}
+                    >
+                        Me contacter
+                    </a>
+                </motion.div>
             </motion.div>
 
-            {/* Wrapper relatif autour de l'image pour positionner les icônes */}
-            <div className="relative flex items-center justify-center md:w-[40%] w-[80%] aspect-square z-10 mt-8 md:mt-0">
-                <motion.img 
-                    src="codou.png" 
-                    alt="Codou Aïcha Faye" 
-                    variants={imageVariants}
-                    className={`object-contain w-full h-full rounded-2xl ${
-                        theme === 'dark' ? 'bg-amber-500/10 border border-gray-800' : 'bg-amber-50 border border-amber-100'
-                    }`}
-                />
+            {/* Profile image with floating badges */}
+            <div className="relative flex items-center justify-center w-full max-w-sm md:max-w-md aspect-square z-10 mt-10 md:mt-0 p-4">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-emerald-500/20 to-amber-500/20 blur-2xl -z-10" />
 
-                {domainIcons.map(({ Icon, angle, color, label }, index) => {
+                <motion.div 
+                    variants={imageVariants}
+                    className="relative w-64 h-80 sm:w-72 sm:h-96 rounded-3xl overflow-hidden shadow-2xl border-4 border-emerald-500/30"
+                >
+                    <img 
+                        src="/ibrahima_profile.jpg" 
+                        alt="Ibrahima Diallo - Entrepreneur agricole" 
+                        className="w-full h-full object-cover object-top"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-4">
+                        <div className="text-white">
+                            <p className="font-bold text-sm">Ibrahima Diallo</p>
+                            <p className="text-xs text-emerald-300">Promoteur GN AGROBUSINESS</p>
+                        </div>
+                    </div>
+                </motion.div>
+
+                {/* Floating tags */}
+                {badges.map(({ Icon, angle, color, label }, index) => {
                     const rad = (angle * Math.PI) / 180;
-                    const radius = 140;
+                    const radius = 150;
                     const x = Math.cos(rad) * radius;
                     const y = Math.sin(rad) * radius;
                     return (
@@ -167,30 +172,35 @@ const domainIcons = [
                             key={index}
                             title={label}
                             style={{ position: 'absolute', left: '50%', top: '50%' }}
-                            initial={{ opacity: 0, scale: 0, x: x - 20, y: y - 20 }}
+                            initial={{ opacity: 0, scale: 0, x: x - 18, y: y - 18 }}
                             animate={{
                                 opacity: 1,
                                 scale: 1,
-                                x: [x - 20, x - 26, x - 20],
-                                y: [y - 20, y - 26, y - 20],
+                                x: [x - 18, x - 22, x - 18],
+                                y: [y - 18, y - 22, y - 18],
                             }}
                             transition={{
-                                opacity: { delay: 1 + index * 0.15, duration: 0.4 },
-                                scale:   { delay: 1 + index * 0.15, duration: 0.4, type: 'spring' },
-                                x: { delay: 1 + index * 0.15, duration: 2.5 + index * 0.4, repeat: Infinity, ease: 'easeInOut' },
-                                y: { delay: 1 + index * 0.15, duration: 2.5 + index * 0.4, repeat: Infinity, ease: 'easeInOut' },
+                                opacity: { delay: 0.8 + index * 0.12, duration: 0.4 },
+                                scale: { delay: 0.8 + index * 0.12, duration: 0.4, type: 'spring' },
+                                x: { delay: 0.8 + index * 0.12, duration: 3 + index * 0.3, repeat: Infinity, ease: 'easeInOut' },
+                                y: { delay: 0.8 + index * 0.12, duration: 3 + index * 0.3, repeat: Infinity, ease: 'easeInOut' },
                             }}
+                            className="hidden sm:block"
                         >
-                            <div className={`w-11 h-11 rounded-xl flex items-center justify-center shadow-lg ${
-                                theme === 'dark' ? 'bg-gray-800/90 border border-gray-700' : 'bg-white/95 border border-gray-200'
+                            <div className={`p-2.5 rounded-xl flex items-center gap-2 shadow-lg backdrop-blur-sm border ${
+                                theme === 'dark' ? 'bg-gray-800/90 border-gray-700' : 'bg-white/95 border-gray-200'
                             }`}>
-                                <Icon size={22} color={color} />
+                                <Icon size={18} color={color} />
+                                <span className={`text-xs font-semibold whitespace-nowrap ${
+                                    theme === 'dark' ? 'text-gray-200' : 'text-gray-800'
+                                }`}>
+                                    {label}
+                                </span>
                             </div>
                         </motion.div>
                     );
                 })}
             </div>
-            
-        </motion.div>
-    )
+        </motion.section>
+    );
 }

@@ -1,138 +1,154 @@
 import { useState } from "react";
 import { BiMenu } from "react-icons/bi";
-import { FaLocationDot } from "react-icons/fa6";
-import { FaMoon, FaSun } from "react-icons/fa";
+import { FaLocationDot, FaPhone } from "react-icons/fa6";
+import { FaMoon, FaSun, FaSeedling } from "react-icons/fa";
 import { useTheme } from "../contexts/ThemeContext";
 
-export default function Header(){
+export default function Header() {
     const { theme, toggleTheme } = useTheme();
-    const [menuDisplay, setMenuDisplay]= useState<boolean>(false)
-    
-    return(
-        <header className={`sticky top-0 z-50 w-full backdrop-blur-sm ${
-            theme === 'dark' ? 'bg-gray-900/80 border-b border-gray-800' : 'bg-white/80 border-b border-gray-200'
+    const [menuDisplay, setMenuDisplay] = useState<boolean>(false);
+
+    return (
+        <header className={`sticky top-0 z-50 w-full backdrop-blur-md transition-colors ${
+            theme === 'dark' ? 'bg-gray-900/90 border-b border-gray-800' : 'bg-white/90 border-b border-gray-200'
         }`}>
-
-                <div className={`flex p-4 w-full items-center justify-around max-w-7xl mx-auto ${
-                    theme === 'dark' ? '' : ''
-                }`}>
-                    <h1 className={`text-xl ${
-                        theme === 'dark' ? 'text-white' : 'text-gray-900'
-                    }`}>
-                        Codou Aïcha <span className="font-bold text-amber-500">Faye</span>
-                    </h1>
-                    <div className="flex items-center justify-center gap-2 md:gap-8">
-                        <div className={`md:flex hidden items-center justify-center gap-1.5 ${
-                            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+            <div className="flex p-4 w-full items-center justify-between max-w-7xl mx-auto">
+                <a href="#accueil" className="flex items-center gap-2 group">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white shadow-md shadow-emerald-500/20 group-hover:bg-emerald-500 transition-colors">
+                        <FaSeedling size={20} />
+                    </div>
+                    <div>
+                        <h1 className={`text-xl font-bold tracking-tight ${
+                            theme === 'dark' ? 'text-white' : 'text-gray-900'
                         }`}>
-                            <FaLocationDot className="text-amber-500"/>
-                            Dakar, Sénégal
-                        </div>
-                        <a 
-                            href="tel:+221776391186"
-                            className={`md:flex hidden items-center justify-center gap-1.5 text-sm font-medium ${
-                                theme === 'dark' ? 'text-gray-300 hover:text-amber-400' : 'text-gray-700 hover:text-amber-600'
-                            }`}
-                        >
-                            +221 77 639 11 86
-                        </a>
-                        <a 
-                            href="#contact"
-                            className={`p-2 hover:cursor-pointer hover:bg-amber-500 hover:text-white border border-amber-500 rounded transition-colors ${
-                                theme === 'dark' 
-                                    ? 'bg-gray-800 text-white' 
-                                    : 'bg-white text-gray-900'
-                            }`}
-                        >
-                            Contact
-                        </a>
-                        
-                        {/* Theme Toggle */}
-                        <button
-                            onClick={toggleTheme}
-                            className={`p-2 rounded-full transition-colors ${
-                                theme === 'dark'
-                                    ? 'bg-gray-700 hover:bg-gray-600 text-yellow-400'
-                                    : 'bg-gray-200 hover:bg-gray-300 text-gray-800'
-                            }`}
-                            aria-label="Toggle theme"
-                        >
-                            {theme === 'dark' ? <FaSun size={20} /> : <FaMoon size={20} />}
-                        </button>
-
-                        <BiMenu 
-                            size={30} 
-                            className={`md:hidden hover:cursor-pointer ${
-                                theme === 'dark' ? 'text-white' : 'text-gray-900'
-                            }`}
-                            onClick={()=> setMenuDisplay(!menuDisplay)}
-                        />
+                            Ibrahima <span className="text-emerald-500">Diallo</span>
+                        </h1>
+                        <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400 block -mt-1">
+                            GN AGROBUSINESS
+                        </span>
                     </div>
-                </div>
+                </a>
 
-                <div className={`${menuDisplay? "flex flex-col": "hidden"} md:flex md:flex-row md:flex-wrap p-4 items-center justify-center gap-x-8 gap-y-2 md:w-[90%] lg:w-[75%] m-auto border-t ${
-                    theme === 'dark' ? 'border-gray-800' : 'border-gray-200'
-                }`}>
-                    <div className="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-4 md:gap-8 font-medium">
-                        <a 
-                            href="#accueil" 
-                            className={`whitespace-nowrap hover:text-amber-500 transition-colors ${
-                                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                            }`}
-                        >
-                            Accueil
-                        </a>
-                        <a 
-                            href="#about" 
-                            className={`whitespace-nowrap hover:text-amber-500 transition-colors ${
-                                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                            }`}
-                        >
-                            À propos
-                        </a>
-                        <a 
-                            href="#engagements" 
-                            className={`whitespace-nowrap hover:text-amber-500 transition-colors ${
-                                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                            }`}
-                        >
-                            Engagements
-                        </a>
-                        <a 
-                            href="#stats" 
-                            className={`whitespace-nowrap hover:text-amber-500 transition-colors ${
-                                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                            }`}
-                        >
-                            Impact
-                        </a>
-                        <a 
-                            href="#parcours" 
-                            className={`whitespace-nowrap hover:text-amber-500 transition-colors ${
-                                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                            }`}
-                        >
-                            Parcours
-                        </a>
-                        <a 
-                            href="#formation" 
-                            className={`whitespace-nowrap hover:text-amber-500 transition-colors ${
-                                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                            }`}
-                        >
-                            Formation
-                        </a>
-                        <a 
-                            href="#contact" 
-                            className={`whitespace-nowrap hover:text-amber-500 transition-colors ${
-                                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-                            }`}
-                        >
-                            Contact
-                        </a>
+                <div className="flex items-center justify-center gap-2 md:gap-6">
+                    <div className={`hidden lg:flex items-center justify-center gap-1.5 text-xs font-medium ${
+                        theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                    }`}>
+                        <FaLocationDot className="text-emerald-500" />
+                        Dakar & Somayah (Coyah)
                     </div>
+
+                    <a 
+                        href="tel:+224781938221"
+                        className={`hidden md:flex items-center justify-center gap-1.5 text-sm font-semibold transition-colors ${
+                            theme === 'dark' ? 'text-gray-300 hover:text-emerald-400' : 'text-gray-700 hover:text-emerald-600'
+                        }`}
+                    >
+                        <FaPhone className="text-emerald-500 text-xs" />
+                        +224 78 193 82 21
+                    </a>
+
+                    <a 
+                        href="#contact"
+                        className="px-4 py-2 text-sm font-medium hover:bg-emerald-600 hover:text-white border border-emerald-500 text-emerald-600 dark:text-emerald-400 dark:border-emerald-500 rounded-lg transition-colors"
+                    >
+                        Contact
+                    </a>
                     
+                    {/* Theme Toggle */}
+                    <button
+                        onClick={toggleTheme}
+                        className={`p-2 rounded-lg transition-colors ${
+                            theme === 'dark'
+                                ? 'bg-gray-800 hover:bg-gray-700 text-yellow-400'
+                                : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                        }`}
+                        aria-label="Changer de thème"
+                    >
+                        {theme === 'dark' ? <FaSun size={18} /> : <FaMoon size={18} />}
+                    </button>
+
+                    <button 
+                        className={`p-2 rounded-lg md:hidden ${
+                            theme === 'dark' ? 'text-white hover:bg-gray-800' : 'text-gray-900 hover:bg-gray-100'
+                        }`}
+                        onClick={() => setMenuDisplay(!menuDisplay)}
+                        aria-label="Menu"
+                    >
+                        <BiMenu size={26} />
+                    </button>
                 </div>
-            </header>
-    )
+            </div>
+
+            {/* Menu navigation */}
+            <div className={`${menuDisplay ? "flex flex-col" : "hidden"} md:flex md:flex-row md:flex-wrap p-3 items-center justify-center gap-x-6 gap-y-2 max-w-7xl mx-auto border-t text-sm ${
+                theme === 'dark' ? 'border-gray-800 bg-gray-900/95' : 'border-gray-200 bg-white/95'
+            }`}>
+                <div className="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-4 md:gap-7 font-medium">
+                    <a 
+                        href="#accueil" 
+                        onClick={() => setMenuDisplay(false)}
+                        className={`whitespace-nowrap hover:text-emerald-500 transition-colors ${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                        }`}
+                    >
+                        Accueil
+                    </a>
+                    <a 
+                        href="#about" 
+                        onClick={() => setMenuDisplay(false)}
+                        className={`whitespace-nowrap hover:text-emerald-500 transition-colors ${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                        }`}
+                    >
+                        Qui suis-je ?
+                    </a>
+                    <a 
+                        href="#formation" 
+                        onClick={() => setMenuDisplay(false)}
+                        className={`whitespace-nowrap hover:text-emerald-500 transition-colors ${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                        }`}
+                    >
+                        Parcours académique
+                    </a>
+                    <a 
+                        href="#parcours" 
+                        onClick={() => setMenuDisplay(false)}
+                        className={`whitespace-nowrap hover:text-emerald-500 transition-colors ${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                        }`}
+                    >
+                        Parcours professionnel
+                    </a>
+                    <a 
+                        href="#competences" 
+                        onClick={() => setMenuDisplay(false)}
+                        className={`whitespace-nowrap hover:text-emerald-500 transition-colors ${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                        }`}
+                    >
+                        Expertise & Compétences
+                    </a>
+                    <a 
+                        href="#ambitions" 
+                        onClick={() => setMenuDisplay(false)}
+                        className={`whitespace-nowrap hover:text-emerald-500 transition-colors ${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                        }`}
+                    >
+                        GN AGROBUSINESS
+                    </a>
+                    <a 
+                        href="#contact" 
+                        onClick={() => setMenuDisplay(false)}
+                        className={`whitespace-nowrap hover:text-emerald-500 transition-colors ${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                        }`}
+                    >
+                        Contact
+                    </a>
+                </div>
+            </div>
+        </header>
+    );
 }

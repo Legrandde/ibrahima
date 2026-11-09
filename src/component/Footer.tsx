@@ -1,111 +1,84 @@
-import { FaEnvelope, FaPhone } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaSeedling } from 'react-icons/fa';
 import { useTheme } from '../contexts/ThemeContext';
 import { FaLocationDot } from 'react-icons/fa6';
+import { BsWhatsapp } from 'react-icons/bs';
 
 export default function Footer() {
   const { theme } = useTheme();
-
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={`w-full border-t ${
+    <footer className={`w-full border-t transition-colors ${
       theme === 'dark' 
-        ? 'bg-gray-900 text-gray-300 border-gray-800' 
-        : 'bg-white text-gray-800 border-gray-200'
+        ? 'bg-gray-950 text-gray-300 border-gray-800' 
+        : 'bg-gray-50 text-gray-800 border-gray-200'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 py-16">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-16">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* About Section */}
           <div>
-            <h3 className={`text-2xl font-bold mb-4 ${
-              theme === 'dark' ? 'text-white' : 'text-gray-900'
-            }`}>
-              Codou Aïcha <span className="text-amber-500">Faye</span>
-            </h3>
-            <p className={`mb-4 text-sm leading-relaxed ${
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white">
+                <FaSeedling size={16} />
+              </div>
+              <h3 className={`text-xl font-bold ${
+                theme === 'dark' ? 'text-white' : 'text-gray-900'
+              }`}>
+                IBRAHIMA <span className="text-emerald-500">DIALLO</span>
+              </h3>
+            </div>
+            <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider mb-2">
+              GN AGROBUSINESS
+            </p>
+            <p className={`text-sm leading-relaxed mb-4 ${
               theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
             }`}>
-              Directrice d'Écoles au Sénégal. Une trajectoire au service de l’humain, de l’éducation et de l’inclusion. Une femme de convictions et d’engagement.
+              Entrepreneur agricole et promoteur de GN AGROBUSINESS. Titulaire d'une Licence en Entrepreneuriat et Gestion des PME (UNIPRO 2026). Dédié à la modernisation agricole et à la filière maraîchère en Guinée.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className={`text-xl font-semibold mb-4 ${
+            <h4 className={`text-base font-bold mb-4 uppercase tracking-wider ${
               theme === 'dark' ? 'text-white' : 'text-gray-900'
             }`}>
               Navigation
             </h4>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2.5 text-sm">
               <li>
-                <a
-                  href="#accueil"
-                  className={`hover:text-amber-500 transition-colors ${
-                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                  }`}
-                >
+                <a href="#accueil" className="hover:text-emerald-500 transition-colors">
                   Accueil
                 </a>
               </li>
               <li>
-                <a
-                  href="#about"
-                  className={`hover:text-amber-500 transition-colors ${
-                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                  }`}
-                >
-                  À propos
+                <a href="#about" className="hover:text-emerald-500 transition-colors">
+                  1. Qui suis-je ?
                 </a>
               </li>
               <li>
-                <a
-                  href="#engagements"
-                  className={`hover:text-amber-500 transition-colors ${
-                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                  }`}
-                >
-                  Engagements
+                <a href="#formation" className="hover:text-emerald-500 transition-colors">
+                  2. Parcours académique
                 </a>
               </li>
               <li>
-                <a
-                  href="#stats"
-                  className={`hover:text-amber-500 transition-colors ${
-                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                  }`}
-                >
-                  Impact
+                <a href="#parcours" className="hover:text-emerald-500 transition-colors">
+                  3. Parcours professionnel
                 </a>
               </li>
               <li>
-                <a
-                  href="#parcours"
-                  className={`hover:text-amber-500 transition-colors ${
-                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                  }`}
-                >
-                  Parcours
+                <a href="#competences" className="hover:text-emerald-500 transition-colors">
+                  4. Expertise & Compétences
                 </a>
               </li>
               <li>
-                <a
-                  href="#formation"
-                  className={`hover:text-amber-500 transition-colors ${
-                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                  }`}
-                >
-                  Formation
+                <a href="#ambitions" className="hover:text-emerald-500 transition-colors">
+                  5. GN AGROBUSINESS
                 </a>
               </li>
               <li>
-                <a
-                  href="#contact"
-                  className={`hover:text-amber-500 transition-colors ${
-                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                  }`}
-                >
-                  Contact
+                <a href="#contact" className="hover:text-emerald-500 transition-colors">
+                  6. Contact
                 </a>
               </li>
             </ul>
@@ -113,28 +86,37 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className={`text-xl font-semibold mb-4 ${
+            <h4 className={`text-base font-bold mb-4 uppercase tracking-wider ${
               theme === 'dark' ? 'text-white' : 'text-gray-900'
             }`}>
-              Contact & Localisation
+              Coordonnées
             </h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-3">
-                <FaPhone className="text-amber-500" />
-                <a href="tel:+221776391186" className={`hover:text-amber-500 transition-colors ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
-                  +221 77 639 11 86
+                <FaPhone className="text-emerald-500 flex-shrink-0" />
+                <a href="tel:+224781938221" className="hover:text-emerald-500 transition-colors font-medium">
+                  +224 78 193 82 21
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <FaEnvelope className="text-amber-500" />
-                <a href="mailto:codouaicha.faye@ecolesausenegal.org" className={`hover:text-amber-500 transition-colors ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
-                  codouaicha.faye@ecolesausenegal.org
+                <BsWhatsapp className="text-emerald-500 flex-shrink-0" />
+                <a href="https://wa.me/224781938221" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-500 transition-colors font-medium">
+                  WhatsApp direct
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <FaLocationDot className="text-amber-500" />
-                <span className={theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}>
-                  Dakar, Sénégal
+                <FaEnvelope className="text-emerald-500 flex-shrink-0" />
+                <a href="mailto:ibrahimdiallo224123@gmail.com" className="hover:text-emerald-500 transition-colors break-all">
+                  ibrahimdiallo224123@gmail.com
+                </a>
+              </li>
+              <li className="flex items-start gap-3">
+                <FaLocationDot className="text-emerald-500 flex-shrink-0 mt-1" />
+                <span>
+                  Keur Massar, Dakar, Sénégal <br />
+                  <span className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold">
+                    Projet : Somayah, Coyah, Guinée
+                  </span>
                 </span>
               </li>
             </ul>
@@ -143,18 +125,14 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className={`border-t pt-8 ${
-          theme === 'dark' ? 'border-gray-800' : 'border-gray-300'
+          theme === 'dark' ? 'border-gray-800' : 'border-gray-200'
         }`}>
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className={`text-sm ${
-              theme === 'dark' ? 'text-gray-500' : 'text-gray-600'
-            }`}>
-              © {currentYear} Codou Aïcha Faye. Tous droits réservés.
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+            <p className={theme === 'dark' ? 'text-gray-500' : 'text-gray-600'}>
+              © {currentYear} Ibrahima Diallo. Tous droits réservés.
             </p>
-            <p className={`text-sm ${
-              theme === 'dark' ? 'text-gray-500' : 'text-gray-600'
-            }`}>
-              Au service de l’humain, de l’éducation et de l’inclusion
+            <p className={theme === 'dark' ? 'text-gray-500' : 'text-gray-600'}>
+              GN AGROBUSINESS • Somayah, Coyah, Guinée
             </p>
           </div>
         </div>
