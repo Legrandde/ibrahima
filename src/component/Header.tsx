@@ -1,103 +1,154 @@
 import { useState } from "react";
-import { BiMenu, BiX } from "react-icons/bi";
-import { FaPhone, FaMoon, FaSun, FaArrowRight } from "react-icons/fa";
-import { FaSeedling } from "react-icons/fa6";
+import { BiMenu } from "react-icons/bi";
+import { FaLocationDot, FaPhone } from "react-icons/fa6";
+import { FaMoon, FaSun, FaSeedling } from "react-icons/fa";
 import { useTheme } from "../contexts/ThemeContext";
 
 export default function Header() {
     const { theme, toggleTheme } = useTheme();
-    const [menuOpen, setMenuOpen] = useState(false);
+    const [menuDisplay, setMenuDisplay] = useState<boolean>(false);
 
     return (
-        <header className="fixed top-4 left-0 right-0 z-50 px-4 max-w-7xl mx-auto">
-            <div className={`flex items-center justify-between px-5 py-3 rounded backdrop-blur-xl border transition-all shadow-lg ${
-                theme === 'dark' 
-                    ? 'bg-gray-900/80 border-gray-800/90 text-white shadow-black/40' 
-                    : 'bg-white/80 border-gray-200/80 text-gray-900 shadow-gray-200/60'
-            }`}>
-                {/* Logo / Brand */}
-                <a href="#accueil" className="flex items-center gap-2.5 group">
-                    <div className="w-9 h-9 rounded bg-emerald-600 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
-                        <FaSeedling size={16} />
+        <header className={`sticky top-0 z-50 w-full backdrop-blur-md transition-colors ${
+            theme === 'dark' ? 'bg-gray-900/90 border-b border-gray-800' : 'bg-white/90 border-b border-gray-200'
+        }`}>
+            <div className="flex p-4 w-full items-center justify-between max-w-7xl mx-auto">
+                <a href="#accueil" className="flex items-center gap-2 group">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white shadow-md shadow-emerald-500/20 group-hover:bg-emerald-500 transition-colors">
+                        <FaSeedling size={20} />
                     </div>
-                    <div className="flex flex-col">
-                        <span className="text-sm font-black tracking-tight leading-none">
+                    <div>
+                        <h1 className={`text-xl font-bold tracking-tight ${
+                            theme === 'dark' ? 'text-white' : 'text-gray-900'
+                        }`}>
                             Ibrahima <span className="text-emerald-500">Diallo</span>
-                        </span>
-                        <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+                        </h1>
+                        <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400 block -mt-1">
                             GN AGROBUSINESS
                         </span>
                     </div>
                 </a>
 
-                {/* Desktop Nav Links */}
-                <nav className="hidden lg:flex items-center gap-7 text-xs font-semibold">
-                    <a href="#accueil" className="hover:text-emerald-500 transition-colors">Accueil</a>
-                    <a href="#about" className="hover:text-emerald-500 transition-colors">Qui suis-je</a>
-                    <a href="#competences" className="hover:text-emerald-500 transition-colors">Expertise</a>
-                    <a href="#parcours" className="hover:text-emerald-500 transition-colors">Expériences</a>
-                    <a href="#ambitions" className="hover:text-emerald-500 transition-colors">GN AGROBUSINESS</a>
-                    <a href="#formation" className="hover:text-emerald-500 transition-colors">Formation</a>
-                </nav>
+                <div className="flex items-center justify-center gap-2 md:gap-6">
+                    <div className={`hidden lg:flex items-center justify-center gap-1.5 text-xs font-medium ${
+                        theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                    }`}>
+                        <FaLocationDot className="text-emerald-500" />
+                        Dakar & Somayah (Coyah)
+                    </div>
 
-                {/* Right Actions */}
-                <div className="flex items-center gap-2.5">
-                    {/* Theme Toggle Button */}
+                    <a 
+                        href="tel:+224781938221"
+                        className={`hidden md:flex items-center justify-center gap-1.5 text-sm font-semibold transition-colors ${
+                            theme === 'dark' ? 'text-gray-300 hover:text-emerald-400' : 'text-gray-700 hover:text-emerald-600'
+                        }`}
+                    >
+                        <FaPhone className="text-emerald-500 text-xs" />
+                        +224 78 193 82 21
+                    </a>
+
+                    <a 
+                        href="#contact"
+                        className="px-4 py-2 text-sm font-medium hover:bg-emerald-600 hover:text-white border border-emerald-500 text-emerald-600 dark:text-emerald-400 dark:border-emerald-500 rounded-lg transition-colors"
+                    >
+                        Contact
+                    </a>
+                    
+                    {/* Theme Toggle */}
                     <button
                         onClick={toggleTheme}
-                        className={`w-9 h-9 rounded flex items-center justify-center transition-colors ${
+                        className={`p-2 rounded-lg transition-colors ${
                             theme === 'dark'
-                                ? 'bg-gray-800 text-yellow-400 hover:bg-gray-700'
-                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                ? 'bg-gray-800 hover:bg-gray-700 text-yellow-400'
+                                : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
                         }`}
                         aria-label="Changer de thème"
                     >
-                        {theme === 'dark' ? <FaSun size={15} /> : <FaMoon size={15} />}
+                        {theme === 'dark' ? <FaSun size={18} /> : <FaMoon size={18} />}
                     </button>
 
-                    {/* Contact Button */}
-                    <a
-                        href="#contact"
-                        className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-bold bg-gray-950 text-white dark:bg-white dark:text-gray-950 hover:opacity-90 transition-opacity shadow-sm"
-                    >
-                        <span>Prendre contact</span>
-                        <div className="w-5 h-5 rounded bg-emerald-500 text-white flex items-center justify-center text-[10px]">
-                            <FaArrowRight size={8} />
-                        </div>
-                    </a>
-
-                    {/* Mobile Menu Trigger */}
-                    <button
-                        onClick={() => setMenuOpen(!menuOpen)}
-                        className={`w-9 h-9 rounded lg:hidden flex items-center justify-center ${
-                            theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-800'
+                    <button 
+                        className={`p-2 rounded-lg md:hidden ${
+                            theme === 'dark' ? 'text-white hover:bg-gray-800' : 'text-gray-900 hover:bg-gray-100'
                         }`}
+                        onClick={() => setMenuDisplay(!menuDisplay)}
                         aria-label="Menu"
                     >
-                        {menuOpen ? <BiX size={22} /> : <BiMenu size={22} />}
+                        <BiMenu size={26} />
                     </button>
                 </div>
             </div>
 
-            {/* Mobile Dropdown Menu */}
-            {menuOpen && (
-                <div className={`mt-2 p-5 rounded border backdrop-blur-xl shadow-2xl flex flex-col gap-3 text-sm font-semibold lg:hidden ${
-                    theme === 'dark' ? 'bg-gray-900/95 border-gray-800 text-white' : 'bg-white/95 border-gray-200 text-gray-900'
-                }`}>
-                    <a href="#accueil" onClick={() => setMenuOpen(false)} className="p-2 rounded hover:bg-emerald-500/10 hover:text-emerald-500">Accueil</a>
-                    <a href="#about" onClick={() => setMenuOpen(false)} className="p-2 rounded hover:bg-emerald-500/10 hover:text-emerald-500">1. Qui suis-je ?</a>
-                    <a href="#competences" onClick={() => setMenuOpen(false)} className="p-2 rounded hover:bg-emerald-500/10 hover:text-emerald-500">Expertise & Compétences</a>
-                    <a href="#parcours" onClick={() => setMenuOpen(false)} className="p-2 rounded hover:bg-emerald-500/10 hover:text-emerald-500">Parcours professionnel</a>
-                    <a href="#ambitions" onClick={() => setMenuOpen(false)} className="p-2 rounded hover:bg-emerald-500/10 hover:text-emerald-500">GN AGROBUSINESS</a>
-                    <a href="#formation" onClick={() => setMenuOpen(false)} className="p-2 rounded hover:bg-emerald-500/10 hover:text-emerald-500">Parcours académique</a>
-                    <a href="#contact" onClick={() => setMenuOpen(false)} className="p-2 rounded hover:bg-emerald-500/10 hover:text-emerald-500">Contact</a>
-                    <div className="pt-2 border-t border-gray-200 dark:border-gray-800 flex items-center justify-between">
-                        <a href="tel:+221781938221" className="text-xs text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 font-bold">
-                            <FaPhone size={11} /> +221 78 193 82 21
-                        </a>
-                    </div>
+            {/* Menu navigation */}
+            <div className={`${menuDisplay ? "flex flex-col" : "hidden"} md:flex md:flex-row md:flex-wrap p-3 items-center justify-center gap-x-6 gap-y-2 max-w-7xl mx-auto border-t text-sm ${
+                theme === 'dark' ? 'border-gray-800 bg-gray-900/95' : 'border-gray-200 bg-white/95'
+            }`}>
+                <div className="flex flex-col md:flex-row md:flex-wrap items-center justify-center gap-4 md:gap-7 font-medium">
+                    <a 
+                        href="#accueil" 
+                        onClick={() => setMenuDisplay(false)}
+                        className={`whitespace-nowrap hover:text-emerald-500 transition-colors ${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                        }`}
+                    >
+                        Accueil
+                    </a>
+                    <a 
+                        href="#about" 
+                        onClick={() => setMenuDisplay(false)}
+                        className={`whitespace-nowrap hover:text-emerald-500 transition-colors ${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                        }`}
+                    >
+                        Qui suis-je ?
+                    </a>
+                    <a 
+                        href="#formation" 
+                        onClick={() => setMenuDisplay(false)}
+                        className={`whitespace-nowrap hover:text-emerald-500 transition-colors ${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                        }`}
+                    >
+                        Parcours académique
+                    </a>
+                    <a 
+                        href="#parcours" 
+                        onClick={() => setMenuDisplay(false)}
+                        className={`whitespace-nowrap hover:text-emerald-500 transition-colors ${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                        }`}
+                    >
+                        Parcours professionnel
+                    </a>
+                    <a 
+                        href="#competences" 
+                        onClick={() => setMenuDisplay(false)}
+                        className={`whitespace-nowrap hover:text-emerald-500 transition-colors ${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                        }`}
+                    >
+                        Expertise & Compétences
+                    </a>
+                    <a 
+                        href="#ambitions" 
+                        onClick={() => setMenuDisplay(false)}
+                        className={`whitespace-nowrap hover:text-emerald-500 transition-colors ${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                        }`}
+                    >
+                        GN AGROBUSINESS
+                    </a>
+                    <a 
+                        href="#contact" 
+                        onClick={() => setMenuDisplay(false)}
+                        className={`whitespace-nowrap hover:text-emerald-500 transition-colors ${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                        }`}
+                    >
+                        Contact
+                    </a>
                 </div>
-            )}
+            </div>
         </header>
     );
 }
